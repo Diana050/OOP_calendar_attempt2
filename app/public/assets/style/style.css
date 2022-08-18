@@ -1,0 +1,122 @@
+html {
+    overflow-y: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    padding-top: 5vh;
+
+}
+.glued-columns
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-section {
+    margin-left: 10vw;
+}
+
+.month-and-arrows li{
+    background-color: rgb(204, 204, 255);
+    height: 10vh;
+}
+
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 8rem);
+    justify-content: center;
+}
+
+.days li {
+    background-color: rgb(204, 204, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(0, 0, 102);
+    font-family: -moz-fixed;
+}
+
+.matrix {
+    /*list-style: none;*/
+    display: grid;
+    grid-template-columns: repeat(7, 8rem);
+    grid-template-rows: repeat(6, 6rem);
+    justify-content: center;
+
+}
+
+
+.matrix li {
+    background-color: rgb(234, 234, 234);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(0, 0, 102);
+    font-family: -moz-fixed;
+}
+
+.matrix li:hover {
+    background-color: rgb(142, 142, 218);
+}
+
+body {
+    padding: 0 ;
+    margin: 0;
+
+}
+
+.people-section {
+    margin-right: 5vw;
+    margin-left: 5vw;
+}
+
+
+.h1 {
+    font-size: 40px;
+    width: 25vw;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: rgb(0, 0, 102);
+    font-family: -moz-fixed;
+
+}
+
+.h1-and-arrows {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrows {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px 0 13px;
+    margin-left: 5px;
+
+}
+
+.arrowRL {
+    height: 50px;
+    width: 50px;
+    margin-left: 2rem;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: -moz-fixed;
+    border-radius: 50%;
+    color: rgb(204, 204, 255);
+    background-color: rgb(0, 0, 102);
+    border: none;
+}
+

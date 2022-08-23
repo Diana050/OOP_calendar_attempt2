@@ -81,8 +81,17 @@
         <section class="people-section">
             <h2 id="scheduleDate"> Schedule</h2>
 
-        </section>
+            {# - {{ appointment.user_id }} - {{ appointment.location_id }}#}
 
+            {% for location in locations %}
+            <p>{{ location.id}} </p>
+            {% endfor %}
+
+        <form class="invisible" method="GET">
+            <input type="text" id="getDateForm" name="date" >
+            <button type="submit" id="getBtnForm" value="submit"></button>
+        </form>
+        </section>
     </section>
 
 {% endblock %}

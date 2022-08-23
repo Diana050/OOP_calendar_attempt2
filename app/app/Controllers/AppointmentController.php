@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Controllers;
+
 use App\Controllers\Controller;
 use App\Auth\Auth;
 use App\Entities\Location;
@@ -28,8 +30,7 @@ class AppointmentController extends Controller
         return $this->view->render(new Response, 'templates/appointment.twig', ['locations' => $locations]);
     }
 
-//----Create appointment----
-
+//create an appointment
 
     public function store(ServerRequestInterface $request): ResponseInterface
 
@@ -38,20 +39,17 @@ class AppointmentController extends Controller
 
         $this->createAppointment($data);
 
-
         return $this->view->render(new Response, 'home.twig');
     }
 
-
     protected function createAppointment(array $data): Appointment
     {
-
         $appointment = new Appointment();
         $locations = $this->db->getRepository(Location::class)->find($data['location']);
-        $x = \DateTime::createFromFormat('Y-m-d', $data['date']);
+        $data = \DateTime::createFromFormat('Y-m-d', $data['date']);
 
         $appointment->fill([
-            'appointment_date' => $x,
+            'appointment_date' => $data,
             'user' => $this->auth->user(),
             'location' => $locations,
         ]);
@@ -63,11 +61,9 @@ class AppointmentController extends Controller
 
     private function validateAppointment(ServerRequestInterface $request): array
     {
-
         return $this->validate($request, [
             'date' => ['required'],
             'location' => ['required'],
-
         ]);
 
     }

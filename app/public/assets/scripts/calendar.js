@@ -98,17 +98,21 @@ function refreshCalendarToCurrentDate() {
     arrowRightElement.click();
 }
 
-if (!document.URL.includes('=')) {
+if (!document.URL.includes('!')) {
     refreshCalendarToCurrentDate();
 }
 
-function alert() {
+function showDate() {
     let month = document.getElementById(("month")).innerText.slice(0, -5);
     let year = document.getElementById(("month")).innerText.split(" ")[1];
     document.getElementById("scheduleDate").innerText = `Schedule for ${month} ${this.innerText}, ${year}`;
+    document.getElementById("getDateForm").value = `${year}-${moment().month(month).format("M")}-${this.innerText}`;
+    document.getElementById("getBtnForm").click();
 
 }
 
 for (const li of liElementCollection) {
-    li.addEventListener("click", alert);
+    li.addEventListener("click", showDate);
 }
+
+

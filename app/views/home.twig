@@ -82,15 +82,14 @@
             <h2 id="scheduleDate"> Schedule</h2>
 
             {# - {{ appointment.user_id }} - {{ appointment.location_id }}#}
-
-            {% for location in locations %}
-            <p>{{ location.id}} </p>
+{#            {{ dump() }}#}
+            {% for appointment in appointments %}
+            <p>{{ appointment.user.name}} </p>
             {% endfor %}
 
-        <form class="invisible" method="GET">
-            <input type="text" id="getDateForm" name="date" >
-            <button type="submit" id="getBtnForm" value="submit"></button>
-        </form>
+            <form method="get" class="invisible" id="invisible">
+                <input type="text" id="getDateForm" name="date"></br>
+            </form>
         </section>
     </section>
 

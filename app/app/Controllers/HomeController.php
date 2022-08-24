@@ -8,6 +8,7 @@ use App\Auth\Auth;
 use App\Entities\Appointment;
 use App\Entities\Location;
 use App\Views\View;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Laminas\Diactoros\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -21,11 +22,16 @@ class HomeController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
-//        dd($request->getUri()->getQuery());
-        $locations = $this->db->getRepository(Appointment::class)->findAll();
-        return $this->view->render(new Response, 'home.twig', ['locations' => $locations]);
+        $getParams = $request->getQueryParams();
+        $locations = [];
+        if (array_key_exists("date", $getParams)) {
+
+            $date = $getParams['date'];
+            $locations = $this->db->getRepository(Appointment::class)->matching(
+                Criteria::create()->where(Criteria::expr()->eq('date', \DateTime::createFromFormat('Y-m-d', $date)))
+            )->getValues();
+        }
+        return $this->view->render(new Response, 'home.twig', ['appointments' => $locations]);
     }
-
-
 }
 

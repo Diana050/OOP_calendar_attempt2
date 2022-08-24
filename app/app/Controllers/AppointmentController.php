@@ -37,8 +37,11 @@ class AppointmentController extends Controller
     {
         $data = $this->validateAppointment($request);
 
-        $this->createAppointment($data);
+        if ($this->validateDateAndLocation($data)) {
+            $this->createAppointment($data);
 
+            return $this->view->render(new Response, 'home.twig');
+        }
         return $this->view->render(new Response, 'home.twig');
     }
 
@@ -49,11 +52,11 @@ class AppointmentController extends Controller
         $data = \DateTime::createFromFormat('Y-m-d', $data['date']);
 
         $appointment->fill([
-            'appointment_date' => $data,
+            'date' => $data,
             'user' => $this->auth->user(),
             'location' => $locations,
         ]);
-        //dd($appointment);
+        //dd($data);
         $this->db->persist($appointment);
         $this->db->flush();
         return $appointment;
@@ -66,6 +69,22 @@ class AppointmentController extends Controller
             'location' => ['required'],
         ]);
 
+    }
+
+    private function validateDateAndLocation(array $data): bool
+    {
+        $currentLocation = $this->db->getRepository(Location::class)->find($data['location']);
+
+        $aptToday = $this->db->getRepository(Appointment::class)->count([
+            'date' => \DateTime::createFromFormat('Y-m-d', $data['date']),
+            'user' => $this->auth->user()
+        ]);
+
+        if (($currentLocation->current_apt > $currentLocation->max_apt) || ($aptToday > 0))
+            return false;
+        else {
+            return true;
+        }
     }
 
 }

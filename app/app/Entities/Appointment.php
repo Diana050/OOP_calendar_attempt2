@@ -24,4 +24,8 @@ class   Appointment extends BaseEntity
     #[ORM\ManyToOne(targetEntity: Location::class, inversedBy: 'appointments')]
     #[ORM\JoinColumn(name: 'location_id', referencedColumnName: 'id', nullable: false)]
     protected Location $location;
+
+    public function getUser(){
+        return $this->user;
+    }
 }

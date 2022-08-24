@@ -93,6 +93,13 @@ function refreshCalendarToCurrentDate() {
     let currentMonth = currentDate.format('MMMM');
     let currentYear = currentDate.format('YYYY');
     document.getElementById("month").innerText = `${currentMonth} ${currentYear}`;
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const product = urlParams.get('date')
+    console.log(product)
+    if (product !== null)
+    document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
+    else
     document.getElementById("scheduleDate").innerText = `Schedule for ${currentMonth} ${currentDay}, ${currentYear}`;
     arrowLeftElement.click();
     arrowRightElement.click();
@@ -105,14 +112,19 @@ if (!document.URL.includes('!')) {
 function showDate() {
     let month = document.getElementById(("month")).innerText.slice(0, -5);
     let year = document.getElementById(("month")).innerText.split(" ")[1];
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const product = urlParams.get('date')
+    if (product !== null)
+        document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
+    else
     document.getElementById("scheduleDate").innerText = `Schedule for ${month} ${this.innerText}, ${year}`;
-    document.getElementById("getDateForm").value = `${year}-${moment().month(month).format("M")}-${this.innerText}`;
-    document.getElementById("getBtnForm").click();
-
+    let x = `${year}-${moment().month(month).format("M")}-${this.innerText}`;
+    let y = moment(x).format('YYYY-MM-DD');
+    document.getElementById("getDateForm").value = y;
+    document.getElementById('invisible').submit();
 }
 
 for (const li of liElementCollection) {
     li.addEventListener("click", showDate);
 }
-
-

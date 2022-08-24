@@ -41,6 +41,7 @@ class AppointmentController extends Controller
             $this->createAppointment($data);
 
             return $this->view->render(new Response, 'home.twig');
+            //return redirect($this->router->getNamedRoute('home')->getPath());
         }
         return $this->view->render(new Response, 'home.twig');
     }
@@ -79,7 +80,6 @@ class AppointmentController extends Controller
             'date' => \DateTime::createFromFormat('Y-m-d', $data['date']),
             'user' => $this->auth->user()
         ]);
-
         if (($currentLocation->current_apt > $currentLocation->max_apt) || ($aptToday > 0))
             return false;
         else {

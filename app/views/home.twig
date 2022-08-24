@@ -82,9 +82,8 @@
             <h2 id="scheduleDate"> Schedule</h2>
 
             {# - {{ appointment.user_id }} - {{ appointment.location_id }}#}
-{#            {{ dump() }}#}
             {% for appointment in appointments %}
-            <p>{{ appointment.user.name}} </p>
+                <p>{{ appointment.user.name}}</p><p> {{ appointment.location.city }} : {{ appointment.location.address }}</p>
             {% endfor %}
 
             <form method="get" class="invisible" id="invisible">

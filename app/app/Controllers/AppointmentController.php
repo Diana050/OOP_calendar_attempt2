@@ -12,13 +12,14 @@ use App\Views\View;
 use Doctrine\ORM\EntityManager;
 use JetBrains\PhpStorm\NoReturn;
 use Laminas\Diactoros\Response;
+use League\Route\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 
 class AppointmentController extends Controller
 {
-    public function __construct(protected View $view, protected EntityManager $db, protected Auth $auth)
+    public function __construct(protected View $view, protected EntityManager $db, protected Auth $auth,protected Router $router,)
     {
 
     }
@@ -39,11 +40,10 @@ class AppointmentController extends Controller
 
         if ($this->validateDateAndLocation($data)) {
             $this->createAppointment($data);
-
-            return $this->view->render(new Response, 'home.twig');
-            //return redirect($this->router->getNamedRoute('home')->getPath());
+            return redirect($this->router->getNamedRoute('home')->getPath());
         }
-        return $this->view->render(new Response, 'home.twig');
+        return redirect($this->router->getNamedRoute('home')->getPath());
+
     }
 
     protected function createAppointment(array $data): Appointment
@@ -74,13 +74,11 @@ class AppointmentController extends Controller
 
     private function validateDateAndLocation(array $data): bool
     {
-        $currentLocation = $this->db->getRepository(Location::class)->find($data['location']);
-
         $aptToday = $this->db->getRepository(Appointment::class)->count([
             'date' => \DateTime::createFromFormat('Y-m-d', $data['date']),
             'user' => $this->auth->user()
         ]);
-        if (($currentLocation->current_apt > $currentLocation->max_apt) || ($aptToday > 0))
+        if (($aptToday > 0))
             return false;
         else {
             return true;

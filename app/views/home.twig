@@ -6,88 +6,105 @@
     <section class="container">
         <section class="calendar-section">
             <div class="glued-columns">
-            <ol class="month-and-arrows">
-            <li><div class="h1-and-arrows">
-                <div class="arrows">
-                    <button id="arrowL" class="arrowRL">&#8617;</button>
-                    <h1 id="month" class="h1">August 2022</h1>
-                    <button id="arrowR" class="arrowRL">&#8618;</button>
-                </div>
-            </div>
-            </li>
-            </ol>
-            <ol class="days">
-                <li data-col="7" data-row="1">S</li>
-                <li data-col="1" data-row="1">M</li>
-                <li data-col="2" data-row="1">T</li>
-                <li data-col="3" data-row="1">W</li>
-                <li data-col="4" data-row="1">T</li>
-                <li data-col="5" data-row="1">F</li>
-                <li data-col="6" data-row="1">S</li>
-            </ol>
-            <ol id="matrix" class="matrix">
+                <ol class="month-and-arrows">
+                    <li>
+                        <div class="h1-and-arrows">
+                            <div class="arrows">
+                                <button id="arrowL" class="arrowRL">&#8617;</button>
+                                <h1 id="month" class="h1">August 2022</h1>
+                                <button id="arrowR" class="arrowRL">&#8618;</button>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <ol class="days">
+                    <li data-col="7" data-row="1">S</li>
+                    <li data-col="1" data-row="1">M</li>
+                    <li data-col="2" data-row="1">T</li>
+                    <li data-col="3" data-row="1">W</li>
+                    <li data-col="4" data-row="1">T</li>
+                    <li data-col="5" data-row="1">F</li>
+                    <li data-col="6" data-row="1">S</li>
+                </ol>
+                <ol id="matrix" class="matrix">
 
-                <li class="day" id="day" data-col="1" data-row="1">1</li>
-                <li class="day" id="day" data-col="2" data-row="1">2</li>
-                <li class="day" id="day" data-col="3" data-row="1">3</li>
-                <li class="day" data-col="4" data-row="1">4</li>
-                <li class="day" data-col="5" data-row="1">5</li>
-                <li class="day" data-col="6" data-row="1">6</li>
-                <li class="day" data-col="7" data-row="1">7</li>
+                    <li class="day" id="day" data-col="1" data-row="1">1</li>
+                    <li class="day" id="day" data-col="2" data-row="1">2</li>
+                    <li class="day" id="day" data-col="3" data-row="1">3</li>
+                    <li class="day" data-col="4" data-row="1">4</li>
+                    <li class="day" data-col="5" data-row="1">5</li>
+                    <li class="day" data-col="6" data-row="1">6</li>
+                    <li class="day" data-col="7" data-row="1">7</li>
 
-                <li id="day" class="day" data-col="2" data-row="2">8</li>
-                <li class="day" data-col="1" data-row="2">9</li>
-                <li class="day" data-col="3" data-row="2">10</li>
-                <li class="day" data-col="4" data-row="2">11</li>
-                <li data-col="5" data-row="2">12</li>
-                <li data-col="6" data-row="2">13</li>
-                <li data-col="7" data-row="2">14</li>
+                    <li id="day" class="day" data-col="2" data-row="2">8</li>
+                    <li class="day" data-col="1" data-row="2">9</li>
+                    <li class="day" data-col="3" data-row="2">10</li>
+                    <li class="day" data-col="4" data-row="2">11</li>
+                    <li data-col="5" data-row="2">12</li>
+                    <li data-col="6" data-row="2">13</li>
+                    <li data-col="7" data-row="2">14</li>
 
-                <li data-col="1" data-row="3">15</li>
-                <li data-col="2" data-row="3">16</li>
-                <li data-col="3" data-row="3">17</li>
-                <li data-col="4" data-row="3">18</li>
-                <li data-col="5" data-row="3">19</li>
-                <li data-col="6" data-row="3">20</li>
-                <li data-col="7" data-row="3">21</li>
+                    <li data-col="1" data-row="3">15</li>
+                    <li data-col="2" data-row="3">16</li>
+                    <li data-col="3" data-row="3">17</li>
+                    <li data-col="4" data-row="3">18</li>
+                    <li data-col="5" data-row="3">19</li>
+                    <li data-col="6" data-row="3">20</li>
+                    <li data-col="7" data-row="3">21</li>
 
-                <li data-col="1" data-row="4">22</li>
-                <li data-col="2" data-row="4">23</li>
-                <li data-col="3" data-row="4">24</li>
-                <li data-col="4" data-row="4">25</li>
-                <li data-col="5" data-row="4">26</li>
-                <li data-col="6" data-row="4">27</li>
-                <li data-col="7" data-row="4">28</li>
+                    <li data-col="1" data-row="4">22</li>
+                    <li data-col="2" data-row="4">23</li>
+                    <li data-col="3" data-row="4">24</li>
+                    <li data-col="4" data-row="4">25</li>
+                    <li data-col="5" data-row="4">26</li>
+                    <li data-col="6" data-row="4">27</li>
+                    <li data-col="7" data-row="4">28</li>
 
-                <li data-col="1" data-row="5">29</li>
-                <li data-col="2" data-row="5">30</li>
-                <li data-col="3" data-row="5">31</li>
-                <li data-col="4" data-row="5"></li>
-                <li data-col="5" data-row="5"></li>
-                <li data-col="6" data-row="5"></li>
-                <li data-col="7" data-row="5"></li>
+                    <li data-col="1" data-row="5">29</li>
+                    <li data-col="2" data-row="5">30</li>
+                    <li data-col="3" data-row="5">31</li>
+                    <li data-col="4" data-row="5"></li>
+                    <li data-col="5" data-row="5"></li>
+                    <li data-col="6" data-row="5"></li>
+                    <li data-col="7" data-row="5"></li>
 
-                <li data-col="1" data-row="6"></li>
-                <li data-col="2" data-row="6"></li>
-                <li data-col="3" data-row="6"></li>
-                <li data-col="4" data-row="6"></li>
-                <li data-col="5" data-row="6"></li>
-                <li data-col="6" data-row="6"></li>
-                <li data-col="7" data-row="6"></li>
+                    <li data-col="1" data-row="6"></li>
+                    <li data-col="2" data-row="6"></li>
+                    <li data-col="3" data-row="6"></li>
+                    <li data-col="4" data-row="6"></li>
+                    <li data-col="5" data-row="6"></li>
+                    <li data-col="6" data-row="6"></li>
+                    <li data-col="7" data-row="6"></li>
 
-            </ol>
+                </ol>
             </div>
         </section>
         <section class="people-section">
             <h2 id="scheduleDate"> Schedule</h2>
 
-            {# - {{ appointment.user_id }} - {{ appointment.location_id }}#}
             {% for appointment in appointments %}
-                <p>{{ appointment.user.name}}</p><p> {{ appointment.location.city }} : {{ appointment.location.address }}</p>
+                <div class="showAppointment"><p class="appointmentName">{{ appointment.user.name }}</p>
+                    <p class="appointment"> {{ appointment.location.city }} : {{ appointment.location.address }}</p>
+                </div>
             {% endfor %}
 
+            <form  method="get" id="try">
+                <select name="location" id="location"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    {% for location in locations %}
+                        <option value="{{ location.id }}">{{ location.city }}
+                            - {{ location.address }}</option>
+                    {% endfor %}
+                    <input style="display: none" type="text" id="cucusucu" name="date">
+                </select>
+                <button type="submit" value="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Select
+                </button>
+            </form>
             <form method="get" class="invisible" id="invisible">
                 <input type="text" id="getDateForm" name="date"></br>
+                <input type="text" id="ciuciumingu" name="location">
             </form>
         </section>
     </section>

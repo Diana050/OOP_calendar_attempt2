@@ -2,3 +2,9 @@
     let dateAptElement = document.getElementById("date");
     dateAptElement.min = moment().format("YYYY-MM-DD");
     dateAptElement.value = moment().format("YYYY-MM-DD");
+    //filtrare dupa locatie done
+    //sa nu se reseteze calendar
+    //validare data back
+    //erori validare
+
+

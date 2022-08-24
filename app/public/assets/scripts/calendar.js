@@ -7,6 +7,17 @@ arrowLeftElement.click();
 arrowRightElement.click();
 
 let monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const alabat = urlParams.get('date');
+if (alabat !== null)
+    document.getElementById("cucusucu").value =alabat;
+else
+    document.getElementById("cucusucu").value = moment().format('YYYY-MM-DD');
+
+const cucu = urlParams.get('location');
+if (cucu !== null)
+document.getElementById('location').value = cucu;
 
 function surfNextMonth() {
     let monthDisplayed = monthElement.innerText.slice(0, -5);
@@ -88,6 +99,7 @@ arrowLeftElement.addEventListener("click", surfPreviousMonth);
 
 function refreshCalendarToCurrentDate() {
     let currentDate = moment();
+    console.log(currentDate);
     let currentDay = currentDate.format('DD');
     console.log(currentDay)
     let currentMonth = currentDate.format('MMMM');
@@ -98,9 +110,9 @@ function refreshCalendarToCurrentDate() {
     const product = urlParams.get('date')
     console.log(product)
     if (product !== null)
-    document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
+        document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
     else
-    document.getElementById("scheduleDate").innerText = `Schedule for ${currentMonth} ${currentDay}, ${currentYear}`;
+        document.getElementById("scheduleDate").innerText = `Schedule for ${currentMonth} ${currentDay}, ${currentYear}`;
     arrowLeftElement.click();
     arrowRightElement.click();
 }
@@ -118,10 +130,11 @@ function showDate() {
     if (product !== null)
         document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
     else
-    document.getElementById("scheduleDate").innerText = `Schedule for ${month} ${this.innerText}, ${year}`;
+        document.getElementById("scheduleDate").innerText = `Schedule for ${month} ${this.innerText}, ${year}`;
     let x = `${year}-${moment().month(month).format("M")}-${this.innerText}`;
     let y = moment(x).format('YYYY-MM-DD');
     document.getElementById("getDateForm").value = y;
+    document.getElementById('ciuciumingu').value = document.getElementById('location').value;
     document.getElementById('invisible').submit();
 }
 

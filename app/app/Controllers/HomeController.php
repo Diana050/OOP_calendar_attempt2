@@ -23,7 +23,7 @@ class HomeController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
-        $this->flash->now('error' , 'test');
+
         $getParams = $request->getQueryParams();
         $appointments = [];
 

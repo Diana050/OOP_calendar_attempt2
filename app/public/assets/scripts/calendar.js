@@ -6,18 +6,22 @@ let liElementCollection = document.getElementById("matrix").getElementsByTagName
 arrowLeftElement.click();
 arrowRightElement.click();
 
+document.getElementById("location").addEventListener("click", function (){
+    document.getElementById("try").submit();
+})
+
 let monthsArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const alabat = urlParams.get('date');
-if (alabat !== null)
-    document.getElementById("cucusucu").value =alabat;
+const dateForNOtRefresh = urlParams.get('date');
+if (dateForNOtRefresh  !== null)
+    document.getElementById("dateSelectForm").value =dateForNOtRefresh;
 else
-    document.getElementById("cucusucu").value = moment().format('YYYY-MM-DD');
+    document.getElementById("dateSelectForm").value = moment().format('YYYY-MM-DD');
 
-const cucu = urlParams.get('location');
-if (cucu !== null)
-document.getElementById('location').value = cucu;
+const linkLocation = urlParams.get('location');
+if (linkLocation !== null)
+document.getElementById('location').value = linkLocation;
 
 function surfNextMonth() {
     let monthDisplayed = monthElement.innerText.slice(0, -5);
@@ -98,17 +102,18 @@ arrowRightElement.addEventListener("click", surfNextMonth);
 arrowLeftElement.addEventListener("click", surfPreviousMonth);
 
 function refreshCalendarToCurrentDate() {
-    let currentDate = moment();
+    let currentDate=moment();
+    if(dateForNOtRefresh !=null)
+     currentDate = moment(dateForNOtRefresh ,"YYYY-MM-DD");
+
     console.log(currentDate);
     let currentDay = currentDate.format('DD');
-    console.log(currentDay)
     let currentMonth = currentDate.format('MMMM');
     let currentYear = currentDate.format('YYYY');
     document.getElementById("month").innerText = `${currentMonth} ${currentYear}`;
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const product = urlParams.get('date')
-    console.log(product)
     if (product !== null)
         document.getElementById("scheduleDate").innerText = `Schedule for ${product}`;
     else
@@ -134,7 +139,7 @@ function showDate() {
     let x = `${year}-${moment().month(month).format("M")}-${this.innerText}`;
     let y = moment(x).format('YYYY-MM-DD');
     document.getElementById("getDateForm").value = y;
-    document.getElementById('ciuciumingu').value = document.getElementById('location').value;
+    document.getElementById('getLocationForm').value = document.getElementById('location').value;
     document.getElementById('invisible').submit();
 }
 

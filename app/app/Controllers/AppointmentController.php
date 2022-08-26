@@ -8,6 +8,7 @@ use App\Auth\Auth;
 use App\Entities\Location;
 use App\Entities\User;
 use App\Entities\Appointment;
+use App\Session\Flash;
 use App\Views\View;
 use Doctrine\ORM\EntityManager;
 use JetBrains\PhpStorm\NoReturn;
@@ -16,10 +17,9 @@ use League\Route\Router;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-
 class AppointmentController extends Controller
 {
-    public function __construct(protected View $view, protected EntityManager $db, protected Auth $auth,protected Router $router,)
+    public function __construct(protected View $view, protected EntityManager $db, protected Auth $auth, protected Router $router, protected Flash $flash)
     {
 
     }
@@ -43,7 +43,6 @@ class AppointmentController extends Controller
             return redirect($this->router->getNamedRoute('home')->getPath());
         }
         return redirect($this->router->getNamedRoute('home')->getPath());
-
     }
 
     protected function createAppointment(array $data): Appointment
@@ -57,7 +56,6 @@ class AppointmentController extends Controller
             'user' => $this->auth->user(),
             'location' => $locations,
         ]);
-        //dd($data);
         $this->db->persist($appointment);
         $this->db->flush();
         return $appointment;
@@ -69,20 +67,34 @@ class AppointmentController extends Controller
             'date' => ['required'],
             'location' => ['required'],
         ]);
-
     }
 
     private function validateDateAndLocation(array $data): bool
     {
-        $aptToday = $this->db->getRepository(Appointment::class)->count([
+        $currentLocation = $this->db->getRepository(Location::class)->find($data['location']);
+
+        $numberOfAppointmentsToday = $this->db->getRepository(Appointment::class)->count([
             'date' => \DateTime::createFromFormat('Y-m-d', $data['date']),
             'user' => $this->auth->user()
         ]);
-        if (($aptToday > 0))
-            return false;
-        else {
-            return true;
-        }
-    }
 
+        $numberOfAppointments = $this->db->getRepository(Appointment::class)->count([
+            'date' => \DateTime::createFromFormat('Y-m-d', $data['date']),
+            'location' => $currentLocation
+        ]);
+
+        if (new \DateTime('today') > \DateTime::createFromFormat('Y-m-d', $data['date'])) {
+            $this->flash->now('error', 'Please select a future day!');
+            return false;
+        } else if ($numberOfAppointments >= $currentLocation->maxCapacity) {
+            $this->flash->now('error', 'Unfortunately there are no more places available for you!');
+            return false;
+        } else if ($numberOfAppointmentsToday > 0) {
+            $this->flash->now('error', 'You have already made an appointment for this date or this location!');
+            return false;
+        } else
+            return true;
+    }
 }
+
+//simpfony 6
